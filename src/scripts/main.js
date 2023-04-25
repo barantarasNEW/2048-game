@@ -21,6 +21,9 @@ const gameFieldCells = document.querySelector('.game-field tbody');
 const messagePlace = document.querySelector('.message-container');
 const button = document.querySelector('.start');
 const gameScore = document.querySelector('.game-score');
+const gameHighest = document.querySelector('.game-highest');
+
+const localeScore = window.localStorage.getItem('highest') || 0;
 
 render();
 
@@ -50,6 +53,11 @@ function render() {
   });
 
   gameScore.textContent = game.score;
+  gameHighest.textContent = window.localStorage.getItem('highest');
+
+  if (game.score >= localeScore) {
+    window.localStorage.setItem('highest', game.score);
+  }
 
   renderMessage('message-start', messageGame.start);
 
